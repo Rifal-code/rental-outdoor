@@ -2,7 +2,7 @@ import { useParams, Link } from "react-router-dom";
 import { useState } from "react";
 import { katalogItems, formatPrice, getWhatsAppLink } from "@/data/katalogData";
 // import Breadcrumb from "@/components/Breadcrumb";
-import Breadcrumb from "@/components/BreadCrumb";
+import Breadcrumb from "@/components/Breadcrumb";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import {
