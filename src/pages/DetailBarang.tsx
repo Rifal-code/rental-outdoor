@@ -189,7 +189,7 @@ const DetailBarang = () => {
               <Button
                 asChild
                 size="lg"
-                className="flex-1 gap-2"
+                className="w-full sm:flex-1 gap-2"
                 // disabled={item.status !== "tersedia"}
               >
                 <a
@@ -202,7 +202,12 @@ const DetailBarang = () => {
                 </a>
               </Button>
 
-              <Button asChild size="lg" variant="outline" className="gap-2">
+              <Button
+                asChild
+                size="lg"
+                variant="outline"
+                className="w-full gap-2"
+              >
                 <a
                   href="https://wa.me/6281901821027"
                   target="_blank"
