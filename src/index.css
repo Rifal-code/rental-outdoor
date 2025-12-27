@@ -1,0 +1,309 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap");
+
+@layer base {
+  :root {
+    /* Outdoor Theme - Forest & Nature */
+    --background: 45 30% 97%;
+    --foreground: 150 30% 10%;
+
+    --card: 45 20% 95%;
+    --card-foreground: 150 30% 10%;
+
+    --popover: 45 30% 97%;
+    --popover-foreground: 150 30% 10%;
+
+    /* Primary - Deep Forest Green */
+    --primary: 150 47% 20%;
+    --primary-foreground: 45 30% 97%;
+
+    /* Secondary - Sage Green */
+    --secondary: 140 25% 35%;
+    --secondary-foreground: 45 30% 97%;
+
+    /* Muted - Light Sage */
+    --muted: 140 15% 90%;
+    --muted-foreground: 150 20% 40%;
+
+    /* Accent - Warm Tan/Brown */
+    --accent: 38 45% 60%;
+    --accent-foreground: 150 30% 10%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 140 15% 85%;
+    --input: 140 15% 85%;
+    --ring: 150 47% 20%;
+
+    --radius: 0.75rem;
+
+    /* Custom Colors */
+    --forest: 150 47% 20%;
+    --forest-light: 150 35% 30%;
+    --sage: 140 25% 45%;
+    --sage-light: 140 20% 75%;
+    --tan: 38 45% 60%;
+    --tan-light: 38 35% 85%;
+    --cream: 45 30% 97%;
+    --earth: 25 30% 25%;
+
+    /* Gradients */
+    --gradient-hero: linear-gradient(
+      135deg,
+      hsl(var(--forest)) 0%,
+      hsl(var(--forest-light)) 50%,
+      hsl(var(--sage)) 100%
+    );
+    --gradient-card: linear-gradient(
+      180deg,
+      hsl(var(--card)) 0%,
+      hsl(45 25% 92%) 100%
+    );
+    --gradient-accent: linear-gradient(
+      135deg,
+      hsl(var(--tan)) 0%,
+      hsl(var(--accent)) 100%
+    );
+
+    /* Shadows */
+    --shadow-sm: 0 2px 8px -2px hsl(var(--forest) / 0.1);
+    --shadow-md: 0 8px 24px -8px hsl(var(--forest) / 0.15);
+    --shadow-lg: 0 16px 48px -12px hsl(var(--forest) / 0.2);
+    --shadow-glow: 0 0 40px hsl(var(--sage) / 0.3);
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 150 30% 8%;
+    --foreground: 45 30% 95%;
+
+    --card: 150 25% 12%;
+    --card-foreground: 45 30% 95%;
+
+    --popover: 150 30% 8%;
+    --popover-foreground: 45 30% 95%;
+
+    --primary: 140 40% 50%;
+    --primary-foreground: 150 30% 8%;
+
+    --secondary: 140 20% 25%;
+    --secondary-foreground: 45 30% 95%;
+
+    --muted: 150 20% 18%;
+    --muted-foreground: 140 15% 60%;
+
+    --accent: 38 40% 50%;
+    --accent-foreground: 150 30% 8%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 150 20% 20%;
+    --input: 150 20% 20%;
+    --ring: 140 40% 50%;
+
+    --forest: 140 40% 50%;
+    --forest-light: 140 35% 40%;
+    --sage: 140 25% 35%;
+    --sage-light: 140 20% 25%;
+    --tan: 38 40% 50%;
+    --tan-light: 38 30% 30%;
+    --cream: 45 20% 15%;
+    --earth: 25 25% 60%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-display font-semibold tracking-tight;
+  }
+}
+
+@layer components {
+  .container-main {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .section-padding {
+    @apply py-16 md:py-24;
+  }
+
+  .card-outdoor {
+    @apply bg-card rounded-xl p-6 shadow-md hover:shadow-lg transition-all duration-300;
+  }
+
+  .btn-primary {
+    @apply bg-primary text-primary-foreground px-6 py-3 rounded-lg font-medium 
+           hover:bg-forest-light transition-all duration-300 hover:shadow-lg
+           hover:-translate-y-0.5 active:translate-y-0;
+  }
+
+  .btn-secondary {
+    @apply bg-secondary text-secondary-foreground px-6 py-3 rounded-lg font-medium
+           hover:bg-sage transition-all duration-300 hover:shadow-md;
+  }
+
+  .btn-accent {
+    @apply bg-accent text-accent-foreground px-6 py-3 rounded-lg font-medium
+           hover:bg-tan transition-all duration-300 hover:shadow-md;
+  }
+
+  .btn-outline {
+    @apply border-2 border-primary text-primary px-6 py-3 rounded-lg font-medium
+           hover:bg-primary hover:text-primary-foreground transition-all duration-300;
+  }
+
+  .text-gradient {
+    @apply bg-gradient-to-r from-forest via-sage to-forest bg-clip-text text-transparent;
+  }
+
+  .link-underline {
+    @apply relative after:content-[''] after:absolute after:w-full after:scale-x-0 
+           after:h-0.5 after:bottom-0 after:left-0 after:bg-accent 
+           after:origin-bottom-right after:transition-transform after:duration-300 
+           hover:after:scale-x-100 hover:after:origin-bottom-left;
+  }
+}
+
+@layer utilities {
+  .animate-fade-up {
+    animation: fadeUp 0.6s ease-out forwards;
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-out forwards;
+  }
+
+  .animate-slide-in-right {
+    animation: slideInRight 0.5s ease-out forwards;
+  }
+
+  .animate-scale-in {
+    animation: scaleIn 0.4s ease-out forwards;
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-pulse-slow {
+    animation: pulse 4s ease-in-out infinite;
+  }
+
+  .hover-lift {
+    @apply transition-transform duration-300 hover:-translate-y-2;
+  }
+
+  .hover-scale {
+    @apply transition-transform duration-300 hover:scale-105;
+  }
+
+  .hover-glow {
+    @apply transition-shadow duration-300 hover:shadow-glow;
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--muted));
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--sage));
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--forest));
+}
