@@ -108,14 +108,10 @@ const Home = () => {
                 variant="outline"
                 className="border-cream/30 text-cream hover:bg-cream/10 hover:border-cream/50 gap-2"
               >
-                <a
-                  href="https://wa.me/6281234567890"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
+                <Link to="/kontak">
                   <Phone className="h-5 w-5" />
                   Hubungi Kami
-                </a>
+                </Link>
               </Button>
             </div>
           </div>

@@ -7,6 +7,7 @@ const navLinks = [
   { path: "/", label: "Home" },
   { path: "/katalog", label: "Katalog" },
   { path: "/paket", label: "Paket Sewa" },
+  { path: "/cara-sewa", label: "Cara Sewa" },
   { path: "/tentang", label: "Tentang Kami" },
   { path: "/kontak", label: "Kontak" },
 ];
@@ -51,14 +52,10 @@ const Navbar = () => {
           {/* CTA Button Desktop */}
           <div className="hidden md:flex items-center gap-3">
             <Button asChild variant="default" size="sm" className="gap-2">
-              <a
-                href="https://wa.me/6281234567890"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
+              <Link to="/kontak">
                 <Phone className="h-4 w-4" />
                 Hubungi Kami
-              </a>
+              </Link>
             </Button>
           </div>
 

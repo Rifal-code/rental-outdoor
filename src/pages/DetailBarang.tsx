@@ -201,9 +201,10 @@ const DetailBarang = () => {
                   Sewa Sekarang
                 </a>
               </Button>
+
               <Button asChild size="lg" variant="outline" className="gap-2">
                 <a
-                  href="https://wa.me/6281234567890"
+                  href="https://wa.me/6281901821027"
                   target="_blank"
                   rel="noopener noreferrer"
                 >

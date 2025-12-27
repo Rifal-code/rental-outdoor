@@ -12,6 +12,7 @@ import TentangKami from "@/pages/TentangKami";
 import Kontak from "@/pages/Kontak";
 import NotFound from "@/pages/NotFound";
 import DetailBarang from "./pages/DetailBarang";
+import CaraSewa from "./pages/CaraSewa";
 
 const queryClient = new QueryClient();
 
@@ -27,6 +28,7 @@ const App = () => (
           <Route path="/katalog" element={<Katalog />} />
           <Route path="/katalog/:id" element={<DetailBarang />} />
           <Route path="/paket" element={<Paket />} />
+          <Route path="/cara-sewa" element={<CaraSewa />} />
           <Route path="/tentang" element={<TentangKami />} />
           <Route path="/kontak" element={<Kontak />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

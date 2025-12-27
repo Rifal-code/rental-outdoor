@@ -1,13 +1,36 @@
 import { useEffect, useState } from "react";
-import { Phone, Mail, MapPin, Clock, Send, MessageCircle, Instagram, Facebook } from "lucide-react";
+import {
+  Phone,
+  Mail,
+  MapPin,
+  Clock,
+  Send,
+  MessageCircle,
+  Instagram,
+  Facebook,
+} from "lucide-react";
 import { toast } from "sonner";
 import { z } from "zod";
+import Header from "@/components/Header";
 
 const contactSchema = z.object({
-  name: z.string().trim().min(1, "Nama wajib diisi").max(100, "Nama terlalu panjang"),
-  whatsapp: z.string().trim().min(10, "Nomor WA minimal 10 digit").max(15, "Nomor WA maksimal 15 digit").regex(/^[0-9+]+$/, "Nomor WA hanya boleh angka"),
+  name: z
+    .string()
+    .trim()
+    .min(1, "Nama wajib diisi")
+    .max(100, "Nama terlalu panjang"),
+  whatsapp: z
+    .string()
+    .trim()
+    .min(10, "Nomor WA minimal 10 digit")
+    .max(15, "Nomor WA maksimal 15 digit")
+    .regex(/^[0-9+]+$/, "Nomor WA hanya boleh angka"),
   service: z.string().min(1, "Pilih layanan yang diinginkan"),
-  message: z.string().trim().min(1, "Pesan wajib diisi").max(1000, "Pesan terlalu panjang"),
+  message: z
+    .string()
+    .trim()
+    .min(1, "Pesan wajib diisi")
+    .max(1000, "Pesan terlalu panjang"),
 });
 
 const Kontak = () => {
@@ -24,7 +47,11 @@ const Kontak = () => {
     document.title = "Kontak - CampGear";
   }, []);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
+  ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
     // Clear error when user types
@@ -39,13 +66,19 @@ const Kontak = () => {
 
     try {
       const validatedData = contactSchema.parse(formData);
-      
+
       // Create WhatsApp message
-      const waMessage = `Halo CampGear!%0A%0ANama: ${encodeURIComponent(validatedData.name)}%0ANo. WA: ${encodeURIComponent(validatedData.whatsapp)}%0ALayanan: ${encodeURIComponent(validatedData.service)}%0A%0APesan:%0A${encodeURIComponent(validatedData.message)}`;
-      
+      const waMessage = `Halo CampGear!%0A%0ANama: ${encodeURIComponent(
+        validatedData.name
+      )}%0ANo. WA: ${encodeURIComponent(
+        validatedData.whatsapp
+      )}%0ALayanan: ${encodeURIComponent(
+        validatedData.service
+      )}%0A%0APesan:%0A${encodeURIComponent(validatedData.message)}`;
+
       // Open WhatsApp
-      window.open(`https://wa.me/6281234567890?text=${waMessage}`, "_blank");
-      
+      window.open(`https://wa.me/6281901821027?text=${waMessage}`, "_blank");
+
       toast.success("Pesan terkirim! Kami akan segera menghubungi Anda.");
       setFormData({ name: "", whatsapp: "", service: "", message: "" });
       setErrors({});
@@ -106,18 +139,10 @@ const Kontak = () => {
   return (
     <main className="min-h-screen pt-20">
       {/* Hero Section */}
-      <section className="bg-gradient-hero py-16 md:py-24">
-        <div className="container-main">
-          <div className="text-center max-w-2xl mx-auto">
-            <h1 className="font-display text-3xl md:text-5xl font-bold text-primary-foreground mb-4">
-              Hubungi Kami
-            </h1>
-            <p className="text-primary-foreground/90 text-lg">
-              Ada pertanyaan atau ingin booking? Tim kami siap membantu Anda merencanakan petualangan camping yang sempurna.
-            </p>
-          </div>
-        </div>
-      </section>
+      <Header
+        title="Hubungi kami"
+        subtitle="Ada pertanyaan atau ingin booking? Tim kami siap membantu Anda merencanakan petualangan camping yang sempurna."
+      />
 
       {/* Contact Section */}
       <section className="section-padding bg-background">
@@ -129,7 +154,8 @@ const Kontak = () => {
                 Informasi Kontak
               </h2>
               <p className="text-muted-foreground mb-8 leading-relaxed">
-                Hubungi kami melalui WhatsApp untuk respon tercepat. Kami juga tersedia via email dan bisa dikunjungi langsung di lokasi kami.
+                Hubungi kami melalui WhatsApp untuk respon tercepat. Kami juga
+                tersedia via email dan bisa dikunjungi langsung di lokasi kami.
               </p>
 
               <div className="space-y-6 mb-8">
@@ -139,7 +165,9 @@ const Kontak = () => {
                       <info.icon className="w-6 h-6 text-primary" />
                     </div>
                     <div>
-                      <h3 className="font-semibold text-foreground mb-1">{info.title}</h3>
+                      <h3 className="font-semibold text-foreground mb-1">
+                        {info.title}
+                      </h3>
                       {info.link ? (
                         <a
                           href={info.link}
@@ -150,7 +178,9 @@ const Kontak = () => {
                           {info.value}
                         </a>
                       ) : (
-                        <p className="text-muted-foreground text-sm">{info.value}</p>
+                        <p className="text-muted-foreground text-sm">
+                          {info.value}
+                        </p>
                       )}
                     </div>
                   </div>
@@ -159,7 +189,9 @@ const Kontak = () => {
 
               {/* Social Links */}
               <div>
-                <h3 className="font-semibold text-foreground mb-4">Ikuti Kami</h3>
+                <h3 className="font-semibold text-foreground mb-4">
+                  Ikuti Kami
+                </h3>
                 <div className="flex gap-3">
                   <a
                     href="#"
@@ -189,9 +221,12 @@ const Kontak = () => {
 
               {/* Quick CTA */}
               <div className="mt-8 p-6 bg-accent/10 rounded-xl border border-accent/20">
-                <h3 className="font-semibold text-foreground mb-2">Respon Cepat via WhatsApp</h3>
+                <h3 className="font-semibold text-foreground mb-2">
+                  Respon Cepat via WhatsApp
+                </h3>
                 <p className="text-muted-foreground text-sm mb-4">
-                  Untuk pertanyaan dan booking cepat, langsung hubungi via WhatsApp.
+                  Untuk pertanyaan dan booking cepat, langsung hubungi via
+                  WhatsApp.
                 </p>
                 <a
                   href="https://wa.me/6281234567890"
@@ -214,7 +249,10 @@ const Kontak = () => {
               <form onSubmit={handleSubmit} className="space-y-6">
                 {/* Name */}
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
+                  <label
+                    htmlFor="name"
+                    className="block text-sm font-medium text-foreground mb-2"
+                  >
                     Nama Lengkap *
                   </label>
                   <input
@@ -229,13 +267,18 @@ const Kontak = () => {
                     placeholder="Masukkan nama lengkap"
                   />
                   {errors.name && (
-                    <p className="text-destructive text-sm mt-1">{errors.name}</p>
+                    <p className="text-destructive text-sm mt-1">
+                      {errors.name}
+                    </p>
                   )}
                 </div>
 
                 {/* WhatsApp */}
                 <div>
-                  <label htmlFor="whatsapp" className="block text-sm font-medium text-foreground mb-2">
+                  <label
+                    htmlFor="whatsapp"
+                    className="block text-sm font-medium text-foreground mb-2"
+                  >
                     Nomor WhatsApp *
                   </label>
                   <input
@@ -250,13 +293,18 @@ const Kontak = () => {
                     placeholder="Contoh: 081234567890"
                   />
                   {errors.whatsapp && (
-                    <p className="text-destructive text-sm mt-1">{errors.whatsapp}</p>
+                    <p className="text-destructive text-sm mt-1">
+                      {errors.whatsapp}
+                    </p>
                   )}
                 </div>
 
                 {/* Service */}
                 <div>
-                  <label htmlFor="service" className="block text-sm font-medium text-foreground mb-2">
+                  <label
+                    htmlFor="service"
+                    className="block text-sm font-medium text-foreground mb-2"
+                  >
                     Layanan yang Diinginkan *
                   </label>
                   <select
@@ -276,13 +324,18 @@ const Kontak = () => {
                     ))}
                   </select>
                   {errors.service && (
-                    <p className="text-destructive text-sm mt-1">{errors.service}</p>
+                    <p className="text-destructive text-sm mt-1">
+                      {errors.service}
+                    </p>
                   )}
                 </div>
 
                 {/* Message */}
                 <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-foreground mb-2">
+                  <label
+                    htmlFor="message"
+                    className="block text-sm font-medium text-foreground mb-2"
+                  >
                     Pesan *
                   </label>
                   <textarea
@@ -297,7 +350,9 @@ const Kontak = () => {
                     placeholder="Tuliskan pertanyaan atau detail kebutuhan Anda..."
                   />
                   {errors.message && (
-                    <p className="text-destructive text-sm mt-1">{errors.message}</p>
+                    <p className="text-destructive text-sm mt-1">
+                      {errors.message}
+                    </p>
                   )}
                 </div>
 
@@ -321,7 +376,8 @@ const Kontak = () => {
                 </button>
 
                 <p className="text-muted-foreground text-xs text-center">
-                  Dengan mengirim pesan, Anda akan diarahkan ke WhatsApp untuk melanjutkan percakapan.
+                  Dengan mengirim pesan, Anda akan diarahkan ke WhatsApp untuk
+                  melanjutkan percakapan.
                 </p>
               </form>
             </div>
@@ -330,20 +386,20 @@ const Kontak = () => {
       </section>
 
       {/* Map Placeholder */}
-      <section className="h-80 bg-muted relative">
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="text-center">
-            <MapPin className="w-12 h-12 text-primary mx-auto mb-4" />
-            <p className="text-foreground font-medium">Jl. Gunung Raya No. 123</p>
-            <p className="text-muted-foreground text-sm">Bandung, Jawa Barat 40123</p>
-            <a
-              href="https://maps.google.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block mt-4 text-primary hover:underline text-sm font-medium"
-            >
-              Buka di Google Maps →
-            </a>
+      {/* Map */}
+      <section className="py-0">
+        <div className="container mx-auto px-4 pb-12">
+          <div className="rounded-2xl overflow-hidden border border-border/50">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126748.5969091047!2d107.57311784999999!3d-6.9034443!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68e6398252477f%3A0x146a1f93d3e815b2!2sBandung%2C%20Kota%20Bandung%2C%20Jawa%20Barat!5e0!3m2!1sid!2sid!4v1703432157285!5m2!1sid!2sid"
+              width="100%"
+              height="400"
+              style={{ border: 0 }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title="Lokasi CampRent"
+            />
           </div>
         </div>
       </section>

@@ -30,7 +30,7 @@ export const categories = [
   "Outdoor Tambahan",
 ];
 
-export const whatsappNumber = "6281234567890";
+export const whatsappNumber = "6281901821027";
 
 export const formatPrice = (price: number) => {
   return new Intl.NumberFormat("id-ID", {
@@ -41,10 +41,15 @@ export const formatPrice = (price: number) => {
 };
 
 export const getWhatsAppLink = (item) => {
+  const firstImage = Array.isArray(item.image) ? item.image[0] : item.image;
+  const imageLink =
+    typeof firstImage === "string"
+      ? window.location.origin + firstImage // ini bikin format URL lokal
+      : "";
   const message = encodeURIComponent(
-    `Halo admin, saya mau sewa:\n\nNama Barang: ${
-      item.nama
-    }\nHarga: ${formatPrice(item.harga)} / hari\n\nTerima kasih`
+    `Halo mas, saya mau sewa:\n\n- Barang: ${item.name}\n- Harga: ${formatPrice(
+      item.price
+    )}\n- Link gambar/barang: ${imageLink}\n- Tanggal sewa: \n- Lokasi: \n\nApakah ready mas?`
   );
   return `https://wa.me/${whatsappNumber}?text=${message}`;
 };
